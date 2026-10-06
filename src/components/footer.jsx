@@ -1,33 +1,5 @@
-import { FaTiktok, FaFacebookF, FaPhoneAlt } from "react-icons/fa";
-import { RiTwitterXLine } from "react-icons/ri";
-import { FaInstagram } from "react-icons/fa6";
-import { AiOutlineMail } from "react-icons/ai";
 import { SocialIconBtn, RevealBlock } from "./UI";
-
-const SOCIAL = [
-  { href: "https://www.tiktok.com/@oba_bisi", icon: FaTiktok, label: "TikTok" },
-  {
-    href: "https://x.com/king_tijesu",
-    icon: RiTwitterXLine,
-    label: "X / Twitter",
-  },
-  {
-    href: "https://facebook.com/obafemi.adebisi.73",
-    icon: FaFacebookF,
-    label: "Facebook",
-  },
-  {
-    href: "https://instagram.com/oba_bisi",
-    icon: FaInstagram,
-    label: "Instagram",
-  },
-  {
-    href: "mailto:obafemiadebisi19@gmail.com",
-    icon: AiOutlineMail,
-    label: "Email",
-  },
-  { href: "tel:+2349130696617", icon: FaPhoneAlt, label: "Phone" },
-];
+import { SOCIAL, EMAIL } from "./social";
 
 const Footer = () => (
   <footer
@@ -61,7 +33,7 @@ const Footer = () => (
 
           {/* Role tagline */}
           <p className="font-display italic text-silver text-lg mb-8">
-            Actor · Screenwriter · Filmmaker
+            Model · Actress · Content Creator
           </p>
 
           {/* Gold divider */}
@@ -91,11 +63,11 @@ const Footer = () => (
             Get in Touch
           </p>
           <p className="font-body text-mist text-base mb-4">
-            Available for acting roles, screenwriting collaborations, and
-            dialogue directing.
+            Available for runway, commercial and editorial bookings, acting
+            roles, and brand partnerships.
           </p>
           <a
-            href="mailto:obafemiadebisi19@gmail.com"
+            href={`mailto:${EMAIL}`}
             className="
               inline-flex items-center gap-2
               font-mono text-[9px] tracking-[0.25em] uppercase
@@ -104,7 +76,7 @@ const Footer = () => (
               transition-all duration-300 ease-cinematic
             "
           >
-            ✉ obafemiadebisi19@gmail.com
+            ✉ {EMAIL}
           </a>
         </div>
       </RevealBlock>

@@ -1,36 +1,7 @@
 import { useState, useEffect, useRef } from "react";
-import { FaTiktok, FaFacebookF, FaPhoneAlt } from "react-icons/fa";
-import { RiTwitterXLine } from "react-icons/ri";
-import { FaInstagram } from "react-icons/fa6";
-import { AiOutlineMail } from "react-icons/ai";
 import { SocialIconBtn, RevealBlock, SectionLabel } from "./UI";
+import { SOCIAL } from "./social";
 import aboutImage from "../assets/images/IMG_4719.jpg";
-
-/* ── Social links data ── */
-const SOCIAL = [
-  { href: "https://www.tiktok.com/@oba_bisi", icon: FaTiktok, label: "TikTok" },
-  {
-    href: "https://x.com/king_tijesu",
-    icon: RiTwitterXLine,
-    label: "X / Twitter",
-  },
-  {
-    href: "https://facebook.com/obafemi.adebisi.73",
-    icon: FaFacebookF,
-    label: "Facebook",
-  },
-  {
-    href: "https://instagram.com/oba_bisi",
-    icon: FaInstagram,
-    label: "Instagram",
-  },
-  {
-    href: "mailto:obafemiadebisi19@gmail.com",
-    icon: AiOutlineMail,
-    label: "Email",
-  },
-  { href: "tel:+2349130696617", icon: FaPhoneAlt, label: "Phone" },
-];
 
 /* ── Certificate accordion item ── */
 const CertCard = ({
@@ -132,7 +103,7 @@ const Hero = () => {
           ref={heroBgRef}
           className="absolute inset-0 will-change-transform"
           style={{
-            backgroundImage: "url('/hero.wep')",
+            backgroundImage: "url('/hero.webp')",
             backgroundSize: "cover",
             backgroundPosition: "center 10%",
           }}
@@ -166,7 +137,7 @@ const Hero = () => {
           <div style={enterStyle(100)}>
             <p className="font-mono text-[10px] tracking-[0.45em] uppercase text-gold mb-4 flex items-center gap-3">
               <span className="w-8 h-px bg-gold inline-block" />
-              Actor · Screenwriter · Filmmaker
+              Model · Actress · Content Creator
             </p>
           </div>
 
@@ -182,7 +153,7 @@ const Hero = () => {
           {/* Tagline */}
           <div style={enterStyle(450)}>
             <p className="font-body italic text-mist text-xl mb-8">
-              That Influencer With Intergrity
+              That Influencer With Integrity
             </p>
           </div>
 
@@ -239,7 +210,9 @@ const Hero = () => {
         {/* Bio paragraphs */}
         <div className="space-y-5">
           {[
-            `lorem ipsum`,
+            `Bellarina TheInfluencer (BTI) is the brand of Isabella Chidera Amaobi — a runway and commercial model, actress and lifestyle content creator. Her work moves between the catwalk, the camera and the feed, blending high-fashion modelling, acting and influencer partnerships into one bold, unmistakable presence.`,
+            `Fierce, magnetic and confident, Bellarina shows up boldly in fashion and lifestyle while staying rooted in God. Faith, love, peace and harmony sit at the heart of everything she creates, and her content speaks to anyone, of any age, who is drawn to confidence, style and fearless self-expression.`,
+            `Her mission is to build a lifestyle brand people aspire to be part of, grounded in confidence, style and authenticity. Her vision is to grow BTI into an iconic name across modelling, acting and the influencer space — setting trends rather than following them.`,
           ].map((para, i) => (
             <RevealBlock key={i} delay={i * 70}>
               <p className="font-body text-mist text-lg leading-[1.85]">

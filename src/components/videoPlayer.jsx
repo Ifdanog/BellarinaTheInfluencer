@@ -77,11 +77,11 @@ export default function VideoPlayer({ src }) {
 
                 <div className="flex justify-between items-center mt-2">
 
-                    <button onClick={togglePlay}>
+                    <button type="button" onClick={togglePlay} aria-label={playing ? "Pause video" : "Play video"} className="cursor-pointer">
                         {playing ? <Pause color="white" /> : <Play color="white" />}
                     </button>
 
-                    <button onClick={toggleMute}>
+                    <button type="button" onClick={toggleMute} aria-label={muted ? "Unmute video" : "Mute video"} className="cursor-pointer">
                         {muted ? <VolumeX color="white" /> : <Volume2 color="white" />}
                     </button>
 

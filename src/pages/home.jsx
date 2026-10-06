@@ -5,6 +5,7 @@ import Hero from '../components/hero';
 import Footer from '../components/footer';
 import GalleryItem from '../components/galleryItem';
 import statsImage from '../assets/images/IMG_6137.jpg';
+import { EMAIL, PHONE_DISPLAY, WHATSAPP_URL } from '../components/social';
 // import { Instagram, Youtube, Twitter, TikTok, Mail, Phone } from 'lucide-react';
 
 // GalleryItem renders an <img>, so the home grid takes photos only
@@ -14,6 +15,21 @@ const images = Object.values(
     import: "default",
   })
 );
+
+// No backend, so the form opens the visitor's email app with the inquiry filled in
+function sendInquiry(e) {
+  e.preventDefault();
+  const data = Object.fromEntries(new FormData(e.currentTarget));
+  const body = [
+    `Name / Brand: ${data.name}`,
+    `Email: ${data.email}`,
+    `Phone / WhatsApp: ${data.phone}`,
+    `Preferred dates: ${data.dates}`,
+    "",
+    data.message,
+  ].join("\n");
+  window.location.href = `mailto:${EMAIL}?subject=${encodeURIComponent(`Booking inquiry from ${data.name}`)}&body=${encodeURIComponent(body)}`;
+}
 
 function Home() {
   const navigate = useNavigate();
@@ -213,7 +229,9 @@ function Home() {
             <motion.div
               initial={{ opacity: 0, x: -40 }}
               whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
               transition={{ duration: 0.8 }}
+              className="min-w-0"
             >
               <h2 className="text-6xl md:text-7xl heading-font font-bold leading-tight text-gold">
                 Let's Create<br />Something<br />Beautiful
@@ -226,17 +244,17 @@ function Home() {
               <div className="mt-16 space-y-10">
                 <div>
                   <p className="uppercase tracking-[3px] text-gold/70 text-sm mb-2">Email</p>
-                  <a href="mailto:hello@bellarinatheinfluencer.com" 
-                     className="text-2xl hover:text-gold transition-colors">
-                    hello@bellarinatheinfluencer.com
+                  <a href={`mailto:${EMAIL}`}
+                     className="text-xl sm:text-2xl break-all hover:text-gold transition-colors">
+                    {EMAIL}
                   </a>
                 </div>
 
                 <div>
                   <p className="uppercase tracking-[3px] text-gold/70 text-sm mb-2">WhatsApp / Phone</p>
-                  <a href="https://wa.me/2348012345678" target="_blank"
+                  <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer"
                      className="text-2xl hover:text-gold transition-colors">
-                    +234 801 234 5678
+                    {PHONE_DISPLAY}
                   </a>
                 </div>
 
@@ -258,15 +276,17 @@ function Home() {
             <motion.div
               initial={{ opacity: 0, x: 40 }}
               whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="bg-cream/10 backdrop-blur-xl border border-white/10 p-10 md:p-14 rounded-3xl"
+              className="min-w-0 bg-cream/10 backdrop-blur-xl border border-white/10 p-6 sm:p-10 md:p-14 rounded-3xl"
             >
               <h3 className="text-3xl heading-font font-semibold mb-8 text-white">Booking Inquiry</h3>
               
-              <form className="space-y-8">
+              <form className="space-y-8" onSubmit={sendInquiry}>
                 <div>
                   <input 
                     type="text" 
+                    name="name" required
                     placeholder="Brand / Agency / Name" 
                     className="w-full bg-transparent border-b border-white/30 pb-4 text-lg placeholder:text-cream/50 focus:border-gold outline-none transition-colors"
                   />
@@ -275,23 +295,26 @@ function Home() {
                 <div>
                   <input 
                     type="email" 
+                    name="email" required
                     placeholder="Email Address" 
                     className="w-full bg-transparent border-b border-white/30 pb-4 text-lg placeholder:text-cream/50 focus:border-gold outline-none transition-colors"
                   />
                 </div>
 
-                <div className="grid grid-cols-2 gap-8">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
                   <div>
                     <input 
                       type="tel" 
-                      placeholder="Phone / WhatsApp" 
+                      name="phone"
+                    placeholder="Phone / WhatsApp" 
                       className="w-full bg-transparent border-b border-white/30 pb-4 text-lg placeholder:text-cream/50 focus:border-gold outline-none transition-colors"
                     />
                   </div>
                   <div>
                     <input 
                       type="text" 
-                      placeholder="Preferred Dates" 
+                      name="dates"
+                    placeholder="Preferred Dates" 
                       className="w-full bg-transparent border-b border-white/30 pb-4 text-lg placeholder:text-cream/50 focus:border-gold outline-none transition-colors"
                     />
                   </div>
@@ -299,6 +322,8 @@ function Home() {
 
                 <div>
                   <textarea 
+                    name="message"
+                    required
                     placeholder="Tell me about your project — campaign type, vision, budget range..." 
                     rows={6}
                     className="w-full bg-transparent border-b border-white/30 pb-4 text-lg placeholder:text-cream/50 focus:border-gold outline-none resize-none transition-colors"
@@ -307,7 +332,7 @@ function Home() {
 
                 <button 
                   type="submit"
-                  className="w-full mt-6 py-7 bg-gold hover:bg-white text-brown font-semibold text-lg tracking-wider rounded-2xl transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+                  className="w-full mt-6 py-7 bg-gold hover:bg-white text-brown font-semibold text-lg tracking-wider rounded-2xl transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
                 >
                   SEND INQUIRY
                 </button>

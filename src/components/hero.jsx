@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { SocialIconBtn, RevealBlock, SectionLabel } from "./UI";
 import { SOCIAL } from "./social";
-import aboutImage from "../assets/images/IMG_4719.jpg";
+import aboutImage from "../assets/images/IMG_0942.jpg";
 
 /* ── Certificate accordion item ── */
 const CertCard = ({
@@ -103,7 +103,7 @@ const Hero = () => {
           ref={heroBgRef}
           className="absolute inset-0 will-change-transform"
           style={{
-            backgroundImage: "url('/hero.webp')",
+            backgroundImage: "url('/hero.web')",
             backgroundSize: "cover",
             backgroundPosition: "center 10%",
           }}
@@ -189,8 +189,8 @@ const Hero = () => {
         </RevealBlock>
 
         <RevealBlock delay={80}>
-          <h2 className="font-display text-display-md text-gradient mb-8">
-            About Bellarina TheInfluencer
+          <h2 className="heading-font text-display-md text-gradient mb-8">
+            About Bellarina TheInfluencer Concepts
           </h2>
         </RevealBlock>
 
@@ -200,7 +200,7 @@ const Hero = () => {
             <img
               src={aboutImage}
               alt="Bellarina TheInfluencer"
-              className="w-full max-h-[500px] object-cover object-[50%_50%]"
+              className="w-full max-h-[500px] object-cover object-[0%_10%]"
               loading="eager"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-ink/50 via-transparent to-transparent" />
@@ -210,9 +210,9 @@ const Hero = () => {
         {/* Bio paragraphs */}
         <div className="space-y-5">
           {[
-            `Bellarina TheInfluencer (BTI) is the brand of Isabella Chidera Amaobi — a runway and commercial model, actress and lifestyle content creator. Her work moves between the catwalk, the camera and the feed, blending high-fashion modelling, acting and influencer partnerships into one bold, unmistakable presence.`,
+            `Bellarina TheInfluencer Concepts (BTIC) is the brand of Isabella Chidera Amaobi, a runway and commercial model, actress and lifestyle content creator. Her work moves between the catwalk, the camera and the feed, blending high-fashion modelling, acting and influencer partnerships into one bold, unmistakable presence.`,
             `Fierce, magnetic and confident, Bellarina shows up boldly in fashion and lifestyle while staying rooted in God. Faith, love, peace and harmony sit at the heart of everything she creates, and her content speaks to anyone, of any age, who is drawn to confidence, style and fearless self-expression.`,
-            `Her mission is to build a lifestyle brand people aspire to be part of, grounded in confidence, style and authenticity. Her vision is to grow BTI into an iconic name across modelling, acting and the influencer space — setting trends rather than following them.`,
+            `Her mission is to build a lifestyle brand people aspire to be part of, grounded in confidence, style and authenticity. Her vision is to grow BTIC into an iconic name across modelling, acting and the influencer space setting trends rather than following them.`,
           ].map((para, i) => (
             <RevealBlock key={i} delay={i * 70}>
               <p className="font-body text-mist text-lg leading-[1.85]">

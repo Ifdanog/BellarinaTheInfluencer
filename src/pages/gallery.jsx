@@ -1,23 +1,14 @@
 import { useState } from "react";
 import GalleryItemer from "../components/galleryItemer";
 import Footer from "../components/footer";
+import Lightbox from "../components/lightbox";
+import { images as media } from "../media";
 
 const ITEMS_PER_PAGE = 20;
 
-// Every photo and video in src/assets/images. .mov is left out: Chrome and
-// Firefox can't play it.
-const mediaModules = import.meta.glob(
-  "/src/assets/images/*.{jpg,jpeg,png,webp,avif,gif,mp4}",
-  {
-    eager: true,
-    import: "default",
-  }
-);
-
-const media = Object.values(mediaModules);
-
 export default function Gallery() {
   const [visible, setVisible] = useState(ITEMS_PER_PAGE);
+  const [open, setOpen] = useState(null);
 
   const displayedMedia = media.slice(0, visible);
 
@@ -33,6 +24,7 @@ export default function Gallery() {
               key={src}
               src={src}
               index={index}
+              onOpen={() => setOpen(index)}
             />
           ))}
         </div>
@@ -51,6 +43,7 @@ export default function Gallery() {
       </div>
     </section>
     <Footer />
+    <Lightbox items={media} index={open} onChange={setOpen} onClose={() => setOpen(null)} />
     </>
   );
 }

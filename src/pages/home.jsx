@@ -1,20 +1,24 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Hero from '../components/hero';
 import Footer from '../components/footer';
 import GalleryItem from '../components/galleryItem';
-import statsImage from '../assets/images/IMG_6137.jpg';
+import VideoCard from '../components/videoCard';
+import Lightbox from '../components/lightbox';
+import { imageModules, videos } from '../media';
+import statsImage from '../assets/images/Bella 5.jpg';
 import { EMAIL, PHONE_DISPLAY, WHATSAPP_URL } from '../components/social';
 // import { Instagram, Youtube, Twitter, TikTok, Mail, Phone } from 'lucide-react';
 
-// GalleryItem renders an <img>, so the home grid takes photos only
-const images = Object.values(
-  import.meta.glob("/src/assets/images/*.{jpg,jpeg,png,webp,avif,gif}", {
-    eager: true,
-    import: "default",
-  })
-);
+// The photos shown in the home gallery, in this order
+const HOME_GALLERY = ["Bella 4.jpg", "Bella 5.jpg", "Bella 7.jpg", "Isabella.png"];
+
+const homeGallery = HOME_GALLERY.map((name) => imageModules[`/src/assets/images/${name}`]).filter(Boolean);
+
+// The first few videos tease the Content Creation page
+const HOME_VIDEOS = 3;
+console.log(videos);
 
 // No backend, so the form opens the visitor's email app with the inquiry filled in
 function sendInquiry(e) {
@@ -34,13 +38,14 @@ function sendInquiry(e) {
 function Home() {
   const navigate = useNavigate();
   const { hash } = useLocation();
+  // Which photo / video is open full screen (null = none)
+  const [photoOpen, setPhotoOpen] = useState(null);
+  const [videoOpen, setVideoOpen] = useState(null);
 
   // Nav links point at "/#section"; scroll there once the page has rendered
   useEffect(() => {
     if (hash) document.getElementById(hash.slice(1))?.scrollIntoView({ behavior: "smooth" });
   }, [hash]);
-
-  const displayedMedia = images.slice(6, 24);
 
   return (
     <>
@@ -53,8 +58,8 @@ function Home() {
           <h2 className="text-5xl heading-font font-bold text-center text-brown mb-16">Gallery</h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {displayedMedia.map((img, index) => (
-              <GalleryItem key={index} src={img} index={index} />
+            {homeGallery.map((img, index) => (
+              <GalleryItem key={img} src={img} index={index} onOpen={() => setPhotoOpen(index)} />
             ))}
           </div>
           <button onClick={() => navigate("/gallery")} className="w-full mt-6 py-7 bg-gold hover:bg-white text-brown font-semibold text-lg tracking-wider rounded-2xl transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] cursor-pointer">
@@ -69,46 +74,46 @@ function Home() {
             {/* MEASUREMENTS & STATS - Modern Fashion Comp Card Style */}
       <section id="stats" className="py-28 bg-white relative">
   <div className="max-w-6xl mx-auto px-6">
-    <h2 className="text-5xl md:text-6xl heading-font font-bold text-center text-brown mb-20">
+    <h2 className="text-5xl md:text-6xl heading-font font-bold text-center text-brown mb-12 md:mb-20">
       Measurements
     </h2>
 
     <div className="max-w-5xl mx-auto">
-      <div className="grid md:grid-cols-2 gap-16 items-start">
+      <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-start">
 
         {/* LEFT - Sticky Image */}
         <motion.div
           initial={{ opacity: 0, x: -40 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
-          className="sticky top-28 self-start"
+          className="relative md:sticky md:top-28 self-start max-w-sm md:max-w-none mx-auto w-full"
         >
           <div className="aspect-[4/5] bg-gradient-to-br from-brown to-black rounded-3xl overflow-hidden shadow-2xl">
             <img
               src={statsImage}
               alt="Amaobi Isabella"
-              className="w-full h-full object-cover transition-transform duration-700 hover:scale-110 scale-150 -translate-y-8 -translate-x-2"
+              className="w-full h-full object-cover transition-transform duration-700"
             />
           </div>
 
-          <div className="absolute -bottom-6 -right-6 bg-cream px-8 py-6 rounded-2xl shadow-xl border border-beige">
+          <div className="absolute bottom-4 right-4 md:-bottom-6 md:-right-6 bg-cream px-5 py-4 md:px-8 md:py-6 rounded-2xl shadow-xl border border-beige">
             <p className="text-brown text-sm tracking-widest">
               PROFESSIONAL
             </p>
-            <p className="text-4xl font-bold text-gold">
+            <p className="text-3xl md:text-4xl font-bold text-gold">
               STATS
             </p>
           </div>
         </motion.div>
 
         {/* RIGHT - Measurements */}
-        <div className="space-y-10">
+        <div className="grid grid-cols-2 gap-x-5 gap-y-6 md:block md:space-y-10">
           {[
-            { label: "Height", value: "5'9\" • 175 cm" },
-            { label: "Bust • Waist • Hips", value: "34 • 26 • 36" },
+            { label: "Height", value: "5'10\" • 178 cm" },
+            { label: "Bust • Waist • Hips", value: "32 • 27 • 36 in" },
             { label: "Dress Size", value: "US 4 / UK 8" },
-            { label: "Shoe Size", value: "EU 38 / US 8" },
-            { label: "Hair Color", value: "Natural Black" },
+            { label: "Shoe Size", value: "EU 42 / US 10.5" },
+            { label: "Hair Color", value: "Dark brown" },
             { label: "Eye Color", value: "Hazel Brown" },
             { label: "Location", value: "Lagos, Nigeria" },
             { label: "Passport & Travel", value: "Valid • Worldwide" },
@@ -118,8 +123,8 @@ function Home() {
             { label: "Editorial", value: "Available" },
             { label: "Commercial", value: "Worldwide" },
             { label: "Campaigns", value: "Luxury Brands" },
-            { label: "Experience", value: "5+ Years" },
-            { label: "Languages", value: "English" },
+            { label: "Experience", value: "3+ Years" },
+            { label: "Languages", value: "English, Igbo" },
             { label: "Availability", value: "International" },
             { label: "Agency", value: "Independent" },
           ].map((stat, i) => (
@@ -127,20 +132,21 @@ function Home() {
               key={i}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.08 }}
-              className="flex justify-between items-end border-b border-beige pb-6 group"
+              viewport={{ once: true }}
+              transition={{ delay: Math.min(i, 4) * 0.08 }}
+              className="flex justify-between items-end border-b border-beige pb-4 md:pb-6 group min-w-0"
             >
               <div>
-                <p className="text-brown/60 text-sm font-medium tracking-widest">
+                <p className="text-brown/60 text-xs md:text-sm font-medium tracking-widest">
                   {stat.label}
                 </p>
 
-                <p className="text-3xl font-semibold text-brown mt-1 group-hover:text-gold transition-colors">
+                <p className="text-lg md:text-3xl font-semibold text-brown mt-1 group-hover:text-gold transition-colors">
                   {stat.value}
                 </p>
               </div>
 
-              <div className="w-12 h-[1px] bg-gradient-to-r from-transparent via-gold to-transparent" />
+              <div className="hidden md:block w-12 h-[1px] bg-gradient-to-r from-transparent via-gold to-transparent" />
             </motion.div>
           ))}
         </div>
@@ -149,6 +155,32 @@ function Home() {
     </div>
   </div>
 </section>
+
+      {/* CONTENT CREATION - videos only */}
+      <section id="content" className="py-28 bg-ink">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-5xl md:text-6xl heading-font font-bold text-pearl">Content Creation</h2>
+            <p className="mt-4 text-lg text-mist max-w-md mx-auto">
+              Lifestyle, fashion and brand content: reels, TikToks and campaigns.
+            </p>
+          </div>
+
+          {videos.length === 0 ? (
+            <p className="text-center text-mist">New videos coming soon.</p>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+              {videos.slice(0, HOME_VIDEOS).map((src, index) => (
+                <VideoCard key={src} src={src} onOpen={() => setVideoOpen(index)} />
+              ))}
+            </div>
+          )}
+
+          <button onClick={() => navigate("/content-creation")} className="w-full max-w-5xl mx-auto block mt-10 py-7 bg-gold hover:bg-white text-brown font-semibold text-lg tracking-wider rounded-2xl transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] cursor-pointer">
+            See More
+          </button>
+        </div>
+      </section>
 
       {/* SERVICES - Modern Luxe Cards */}
       <section id="services" className="py-28 bg-cream">
@@ -348,6 +380,9 @@ function Home() {
 
       {/* FOOTER */}
       <Footer />
+
+      <Lightbox items={homeGallery} index={photoOpen} onChange={setPhotoOpen} onClose={() => setPhotoOpen(null)} />
+      <Lightbox items={videos} index={videoOpen} onChange={setVideoOpen} onClose={() => setVideoOpen(null)} />
     </>
   );
 }

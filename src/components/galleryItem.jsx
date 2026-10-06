@@ -1,7 +1,7 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 
-export default function GalleryItem({ src, index }) {
+export default function GalleryItem({ src, index, onOpen }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
@@ -12,7 +12,11 @@ export default function GalleryItem({ src, index }) {
       animate={isInView ? { opacity: 1, scale: 1 } : {}}
       transition={{ duration: 0.6, delay: index * 0.05 }}
       className="group relative overflow-hidden rounded-3xl aspect-[4/5] cursor-pointer"
-      onClick={() => window.open(src, '_blank')}
+      onClick={onOpen}
+      role="button"
+      tabIndex={0}
+      aria-label={`View photo ${index + 1} full screen`}
+      onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && (e.preventDefault(), onOpen())}
     >
       <img src={src} alt={`Look ${index + 1}`} loading="lazy" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
       <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />

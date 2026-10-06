@@ -3,11 +3,13 @@ import { BrowserRouter, Routes, Route, Link, useLocation } from "react-router-do
 import { Menu, X } from "lucide-react";
 import Home from "./pages/home";
 import Gallery from "./pages/gallery";
+import ContentCreation from "./pages/contentCreation";
 
 const NAV_LINKS = [
   { hash: "#about", label: "About" },
   { hash: "#gallery", label: "Gallery" },
   { hash: "#stats", label: "Stats" },
+  { hash: "#content", label: "Content" },
   { hash: "#services", label: "Services" },
   { hash: "#contact", label: "Book Me" },
 ];
@@ -16,7 +18,8 @@ const NAV_LINKS = [
 function ScrollToTop() {
   const { pathname, hash } = useLocation();
   useEffect(() => {
-    if (!hash) window.scrollTo(0, 0);
+    // "instant" overrides the CSS smooth scrolling, which can be cut short mid-page
+    if (!hash) window.scrollTo({ top: 0, left: 0, behavior: "instant" });
   }, [pathname, hash]);
   return null;
 }
@@ -77,6 +80,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/gallery" element={<Gallery />} />
+        <Route path="/content-creation" element={<ContentCreation />} />
       </Routes>
     </BrowserRouter>
   );

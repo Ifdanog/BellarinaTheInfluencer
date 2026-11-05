@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { SocialIconBtn, RevealBlock, SectionLabel } from "./UI";
 import { SOCIAL } from "./social";
-import aboutImage from "../assets/images/Bella (6).JPG";
+import aboutImage from "../assets/images/Bella (1).JPG";
 import { thumbFor } from "../media";
 
 /* ── Certificate accordion item ── */

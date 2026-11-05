@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { SocialIconBtn, RevealBlock, SectionLabel } from "./UI";
 import { SOCIAL } from "./social";
-import aboutImage from "../assets/images/IMG_0942.jpg";
+import aboutImage from "../assets/images/Bella (1).jpg";
 
 /* ── Certificate accordion item ── */
 const CertCard = ({

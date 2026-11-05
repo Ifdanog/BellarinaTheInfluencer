@@ -12,13 +12,12 @@ import { EMAIL, PHONE_DISPLAY, WHATSAPP_URL } from '../components/social';
 // import { Instagram, Youtube, Twitter, TikTok, Mail, Phone } from 'lucide-react';
 
 // The photos shown in the home gallery, in this order
-const HOME_GALLERY = ["Bella 4.jpg", "Bella 5.jpg", "Bella 7.jpg", "Isabella.png"];
+const HOME_GALLERY = ["Bella 4.jpg", "Bella 5.jpg", "Bella 7.jpg", "Isabella.png", "YUN_0975.JPG", "Bella (3).JPG"];
 
 const homeGallery = HOME_GALLERY.map((name) => imageModules[`/src/assets/images/${name}`]).filter(Boolean);
 
 // The first few videos tease the Content Creation page
 const HOME_VIDEOS = 3;
-console.log(videos);
 
 // No backend, so the form opens the visitor's email app with the inquiry filled in
 function sendInquiry(e) {

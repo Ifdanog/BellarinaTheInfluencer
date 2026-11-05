@@ -24,6 +24,23 @@ function ScrollToTop() {
   return null;
 }
 
+const SITE_TITLE = "Bellarina TheInfluencer | Isabella Amaobi, Model & Actress";
+const PAGE_TITLES = {
+  "/gallery": "Gallery | Bellarina TheInfluencer",
+  "/content-creation": "Content Creation | Bellarina TheInfluencer",
+};
+
+// Each page gets its own browser title, and tells search engines it's its own page
+function PageMeta() {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    document.title = PAGE_TITLES[pathname] ?? SITE_TITLE;
+    const canonical = document.querySelector('link[rel="canonical"]');
+    if (canonical) canonical.href = window.location.origin + pathname;
+  }, [pathname]);
+  return null;
+}
+
 function Nav() {
   const [open, setOpen] = useState(false);
   const { pathname, hash: currentHash } = useLocation();
@@ -75,6 +92,7 @@ function App() {
   return (
     <BrowserRouter>
       <ScrollToTop />
+      <PageMeta />
       <Nav />
 
       <Routes>

@@ -10,7 +10,7 @@ export default function GalleryItemer({ src, index, onOpen }) {
     >
       <img
         src={thumbFor(src)}
-        alt={`Bellarina gallery photo ${index + 1}`}
+        alt={`Isabella Amaobi, Bellarina TheInfluencer, photo ${index + 1}`}
         loading="lazy"
         decoding="async"
         className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"

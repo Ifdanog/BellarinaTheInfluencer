@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
+import { Camera, Clapperboard, Crown, Handshake, Smartphone, Star } from 'lucide-react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Hero from '../components/hero';
 import Footer from '../components/footer';
 import GalleryItem from '../components/galleryItem';
 import VideoCard from '../components/videoCard';
 import Lightbox from '../components/lightbox';
-import { imageModules, thumbFor, videos } from '../media';
+import { altFor, imageModules, thumbFor, videos } from '../media';
 import statsImage from '../assets/images/Bella 5.jpg';
 import { EMAIL, PHONE_DISPLAY, WHATSAPP_URL } from '../components/social';
 // import { Instagram, Youtube, Twitter, TikTok, Mail, Phone } from 'lucide-react';
@@ -52,16 +53,16 @@ function Home() {
       <Hero />
 
       {/* GALLERY */}
-      <section id="gallery" className="py-24 bg-cream">
+      <section id="gallery" className="py-24 bg-black border-t border-gold/20">
         <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-5xl heading-font font-bold text-center text-brown mb-16">Gallery</h2>
+          <h2 className="text-5xl heading-font font-bold text-center text-white mb-16">Gallery</h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {homeGallery.map((img, index) => (
               <GalleryItem key={img} src={img} index={index} onOpen={() => setPhotoOpen(index)} />
             ))}
           </div>
-          <button onClick={() => navigate("/gallery")} className="w-full mt-6 py-7 bg-gold hover:bg-white text-brown font-semibold text-lg tracking-wider rounded-2xl transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] cursor-pointer">
+          <button onClick={() => navigate("/gallery")} className="w-full mt-6 py-7 bg-gold hover:bg-white text-black font-semibold text-lg tracking-wider rounded-2xl transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] cursor-pointer">
             See More
           </button>
         </div>
@@ -73,7 +74,7 @@ function Home() {
             {/* MEASUREMENTS & STATS - Modern Fashion Comp Card Style */}
       <section id="stats" className="py-28 bg-white relative">
   <div className="max-w-6xl mx-auto px-6">
-    <h2 className="text-5xl md:text-6xl heading-font font-bold text-center text-brown mb-12 md:mb-20">
+    <h2 className="text-5xl md:text-6xl heading-font font-bold text-center text-black mb-12 md:mb-20">
       Measurements
     </h2>
 
@@ -87,18 +88,18 @@ function Home() {
           transition={{ duration: 0.8 }}
           className="relative md:sticky md:top-28 self-start max-w-sm md:max-w-none mx-auto w-full"
         >
-          <div className="aspect-[4/5] bg-gradient-to-br from-brown to-black rounded-3xl overflow-hidden shadow-2xl">
+          <div className="aspect-[4/5] bg-black rounded-3xl overflow-hidden shadow-2xl">
             <img
               src={thumbFor(statsImage)}
               loading="lazy"
               decoding="async"
-              alt="Amaobi Isabella"
+              alt={altFor(statsImage)}
               className="w-full h-full object-cover transition-transform duration-700"
             />
           </div>
 
-          <div className="absolute bottom-4 right-4 md:-bottom-6 md:-right-6 bg-cream px-5 py-4 md:px-8 md:py-6 rounded-2xl shadow-xl border border-beige">
-            <p className="text-brown text-sm tracking-widest">
+          <div className="absolute bottom-4 right-4 md:-bottom-6 md:-right-6 bg-black px-5 py-4 md:px-8 md:py-6 rounded-2xl shadow-xl border border-gold/40">
+            <p className="text-white text-sm tracking-widest">
               PROFESSIONAL
             </p>
             <p className="text-3xl md:text-4xl font-bold text-gold">
@@ -118,15 +119,8 @@ function Home() {
             { label: "Eye Color", value: "Hazel Brown" },
             { label: "Location", value: "Lagos, Nigeria" },
             { label: "Passport & Travel", value: "Valid • Worldwide" },
-
-            // Duplicate a few items to demonstrate scrolling
-            { label: "Runway", value: "Professional" },
-            { label: "Editorial", value: "Available" },
-            { label: "Commercial", value: "Worldwide" },
-            { label: "Campaigns", value: "Luxury Brands" },
             { label: "Experience", value: "3+ Years" },
             { label: "Languages", value: "English, Igbo" },
-            { label: "Availability", value: "International" },
             { label: "Agency", value: "Independent" },
           ].map((stat, i) => (
             <motion.div
@@ -135,14 +129,14 @@ function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: Math.min(i, 4) * 0.08 }}
-              className="flex justify-between items-end border-b border-beige pb-4 md:pb-6 group min-w-0"
+              className="flex justify-between items-end border-b border-black/10 pb-4 md:pb-6 group min-w-0"
             >
               <div>
-                <p className="text-brown/60 text-xs md:text-sm font-medium tracking-widest">
+                <p className="text-black/60 text-xs md:text-sm font-medium tracking-widest">
                   {stat.label}
                 </p>
 
-                <p className="text-lg md:text-3xl font-semibold text-brown mt-1 group-hover:text-gold transition-colors">
+                <p className="text-lg md:text-3xl font-semibold text-black mt-1 group-hover:text-gold-deep transition-colors">
                   {stat.value}
                 </p>
               </div>
@@ -177,18 +171,18 @@ function Home() {
             </div>
           )}
 
-          <button onClick={() => navigate("/content-creation")} className="w-full max-w-5xl mx-auto block mt-10 py-7 bg-gold hover:bg-white text-brown font-semibold text-lg tracking-wider rounded-2xl transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] cursor-pointer">
+          <button onClick={() => navigate("/content-creation")} className="w-full max-w-5xl mx-auto block mt-10 py-7 bg-gold hover:bg-white text-black font-semibold text-lg tracking-wider rounded-2xl transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] cursor-pointer">
             See More
           </button>
         </div>
       </section>
 
       {/* SERVICES - Modern Luxe Cards */}
-      <section id="services" className="py-28 bg-cream">
+      <section id="services" className="py-28 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-20">
-            <h2 className="text-5xl md:text-6xl heading-font font-bold text-brown">What I Offer</h2>
-            <p className="mt-4 text-lg text-brown/70 max-w-md mx-auto">
+            <h2 className="text-5xl md:text-6xl heading-font font-bold text-black">What I Offer</h2>
+            <p className="mt-4 text-lg text-black/70 max-w-md mx-auto">
               Versatile talent for high-end projects and creative collaborations
             </p>
           </div>
@@ -198,32 +192,32 @@ function Home() {
               {
                 title: "Fashion & Editorial",
                 desc: "High-fashion shoots, magazine editorials, and campaign imagery.",
-                icon: "📸"
+                icon: Camera
               },
               {
                 title: "Runway & Shows",
                 desc: "Professional catwalk experience for fashion weeks and presentations.",
-                icon: "👠"
+                icon: Crown
               },
               {
                 title: "Commercial Campaigns",
                 desc: "TV commercials, digital ads, and brand storytelling.",
-                icon: "🎥"
+                icon: Clapperboard
               },
               {
                 title: "Brand Partnerships",
                 desc: "Long-term ambassadorships and influencer collaborations.",
-                icon: "🤝"
+                icon: Handshake
               },
               {
                 title: "Content Creation",
                 desc: "UGC, Reels, TikToks, and full social media campaigns.",
-                icon: "✨"
+                icon: Smartphone
               },
               {
                 title: "Events & Appearances",
                 desc: "Red carpet, hosting, product launches, and private events.",
-                icon: "🌟"
+                icon: Star
               },
             ].map((service, i) => (
               <motion.div
@@ -232,15 +226,15 @@ function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.1 }}
                 whileHover={{ y: -12 }}
-                className="group bg-white p-10 rounded-3xl hover:shadow-2xl transition-all duration-500 border border-transparent hover:border-gold/20"
+                className="group bg-black p-10 rounded-3xl hover:shadow-2xl transition-all duration-500 border border-transparent hover:border-gold/20"
               >
                 <div className="text-5xl mb-8 transition-transform group-hover:scale-110 inline-block">
-                  {service.icon}
+                  <service.icon className="w-10 h-10 text-gold" strokeWidth={1.25} aria-hidden="true" />
                 </div>
-                <h3 className="text-2xl font-semibold text-brown mb-4 heading-font">
+                <h3 className="text-2xl font-semibold text-white mb-4 heading-font">
                   {service.title}
                 </h3>
-                <p className="text-brown/70 leading-relaxed">
+                <p className="text-white/70 leading-relaxed">
                   {service.desc}
                 </p>
               </motion.div>
@@ -251,7 +245,7 @@ function Home() {
 
       {/* CONTACT */}
             {/* CONTACT - Modern Split Layout */}
-      <section id="contact" className="py-28 bg-black text-cream relative overflow-hidden">
+      <section id="contact" className="py-28 bg-black text-white relative overflow-hidden">
         {/* Subtle Background Pattern */}
         <div className="absolute inset-0 bg-[radial-gradient(#d4af37_0.8px,transparent_1px)] bg-[length:40px_40px] opacity-5"></div>
 
@@ -270,7 +264,7 @@ function Home() {
                 Let's Create<br />Something<br />Beautiful
               </h2>
               
-              <p className="mt-8 text-xl text-cream/80 max-w-md">
+              <p className="mt-8 text-xl text-white/80 max-w-md">
                 Open to international campaigns, editorial work, brand partnerships, and creative collaborations.
               </p>
 
@@ -294,7 +288,7 @@ function Home() {
                 <div>
                   <p className="uppercase tracking-[3px] text-gold/70 text-sm mb-2">Based In</p>
                   <p className="text-2xl">Lagos, Nigeria</p>
-                  <p className="text-cream/60 mt-1">Available Worldwide</p>
+                  <p className="text-white/60 mt-1">Available Worldwide</p>
                 </div>
               </div>
 
@@ -311,7 +305,7 @@ function Home() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="min-w-0 bg-cream/10 backdrop-blur-xl border border-white/10 p-6 sm:p-10 md:p-14 rounded-3xl"
+              className="min-w-0 bg-white/5 backdrop-blur-xl border border-white/10 p-6 sm:p-10 md:p-14 rounded-3xl"
             >
               <h3 className="text-3xl heading-font font-semibold mb-8 text-white">Booking Inquiry</h3>
               
@@ -321,7 +315,7 @@ function Home() {
                     type="text" 
                     name="name" required
                     placeholder="Brand / Agency / Name" 
-                    className="w-full bg-transparent border-b border-white/30 pb-4 text-lg placeholder:text-cream/50 focus:border-gold outline-none transition-colors"
+                    className="w-full bg-transparent border-b border-white/30 pb-4 text-lg placeholder:text-white/50 focus:border-gold outline-none transition-colors"
                   />
                 </div>
 
@@ -330,7 +324,7 @@ function Home() {
                     type="email" 
                     name="email" required
                     placeholder="Email Address" 
-                    className="w-full bg-transparent border-b border-white/30 pb-4 text-lg placeholder:text-cream/50 focus:border-gold outline-none transition-colors"
+                    className="w-full bg-transparent border-b border-white/30 pb-4 text-lg placeholder:text-white/50 focus:border-gold outline-none transition-colors"
                   />
                 </div>
 
@@ -340,7 +334,7 @@ function Home() {
                       type="tel" 
                       name="phone"
                     placeholder="Phone / WhatsApp" 
-                      className="w-full bg-transparent border-b border-white/30 pb-4 text-lg placeholder:text-cream/50 focus:border-gold outline-none transition-colors"
+                      className="w-full bg-transparent border-b border-white/30 pb-4 text-lg placeholder:text-white/50 focus:border-gold outline-none transition-colors"
                     />
                   </div>
                   <div>
@@ -348,7 +342,7 @@ function Home() {
                       type="text" 
                       name="dates"
                     placeholder="Preferred Dates" 
-                      className="w-full bg-transparent border-b border-white/30 pb-4 text-lg placeholder:text-cream/50 focus:border-gold outline-none transition-colors"
+                      className="w-full bg-transparent border-b border-white/30 pb-4 text-lg placeholder:text-white/50 focus:border-gold outline-none transition-colors"
                     />
                   </div>
                 </div>
@@ -359,19 +353,19 @@ function Home() {
                     required
                     placeholder="Tell me about your project — campaign type, vision, budget range..." 
                     rows={6}
-                    className="w-full bg-transparent border-b border-white/30 pb-4 text-lg placeholder:text-cream/50 focus:border-gold outline-none resize-none transition-colors"
+                    className="w-full bg-transparent border-b border-white/30 pb-4 text-lg placeholder:text-white/50 focus:border-gold outline-none resize-none transition-colors"
                   ></textarea>
                 </div>
 
                 <button 
                   type="submit"
-                  className="w-full mt-6 py-7 bg-gold hover:bg-white text-brown font-semibold text-lg tracking-wider rounded-2xl transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
+                  className="w-full mt-6 py-7 bg-gold hover:bg-white text-black font-semibold text-lg tracking-wider rounded-2xl transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
                 >
                   SEND INQUIRY
                 </button>
               </form>
 
-              <p className="text-center text-xs text-cream/50 mt-8">
+              <p className="text-center text-xs text-white/50 mt-8">
                 I usually reply within 24–48 hours
               </p>
             </motion.div>

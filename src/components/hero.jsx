@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { SocialIconBtn, RevealBlock, SectionLabel } from "./UI";
 import { SOCIAL } from "./social";
 import aboutImage from "../assets/images/Bella (1).JPG";
-import { thumbFor } from "../media";
+import { altFor, thumbFor } from "../media";
 
 /* ── Certificate accordion item ── */
 const CertCard = ({
@@ -202,7 +202,7 @@ const Hero = () => {
               src={aboutImage}
               srcSet={`${thumbFor(aboutImage)} 857w, ${aboutImage} 1714w`}
               sizes="(max-width: 896px) 100vw, 832px"
-              alt="Bellarina TheInfluencer"
+              alt={altFor(aboutImage)}
               className="w-full max-h-[500px] object-cover object-[0%_10%]"
               loading="lazy"
               decoding="async"

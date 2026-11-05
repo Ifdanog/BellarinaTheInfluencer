@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { X, ChevronLeft, ChevronRight, Maximize, Minimize } from "lucide-react";
+import { altFor } from "../media";
 
 const isVideo = (src) => /\.(mp4|webm)(\?|$)/i.test(src);
 
@@ -118,7 +119,7 @@ export default function Lightbox({ items, index, onChange, onClose }) {
           <img
             key={src}
             src={src}
-            alt={`Photo ${index + 1} of ${count}`}
+            alt={altFor(src)}
             className="max-w-full max-h-full object-contain rounded-xl select-none"
           />
         )}

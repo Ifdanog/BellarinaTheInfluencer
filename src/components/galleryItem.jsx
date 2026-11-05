@@ -1,6 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { thumbFor } from "../media";
+import { altFor, thumbFor } from "../media";
 
 export default function GalleryItem({ src, index, onOpen }) {
   const ref = useRef(null);
@@ -16,10 +16,10 @@ export default function GalleryItem({ src, index, onOpen }) {
       onClick={onOpen}
       role="button"
       tabIndex={0}
-      aria-label={`View photo ${index + 1} full screen`}
+      aria-label={`View full screen: ${altFor(src)}`}
       onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && (e.preventDefault(), onOpen())}
     >
-      <img src={thumbFor(src)} alt={`Isabella Amaobi, Bellarina TheInfluencer, photo ${index + 1}`} loading="lazy" decoding="async" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+      <img src={thumbFor(src)} alt={altFor(src)} loading="lazy" decoding="async" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
       <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
       <div className="absolute bottom-6 left-6 text-white opacity-0 group-hover:opacity-100 transition-all translate-y-4 group-hover:translate-y-0">
         <p className="text-sm tracking-widest">PHOTO {String(index + 1).padStart(2, '0')}</p>

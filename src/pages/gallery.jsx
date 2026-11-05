@@ -23,7 +23,6 @@ export default function Gallery() {
             <GalleryItemer
               key={src}
               src={src}
-              index={index}
               onOpen={() => setOpen(index)}
             />
           ))}

@@ -47,6 +47,14 @@ export default function Lightbox({ items, index, onChange, onClose }) {
     return () => document.removeEventListener("fullscreenchange", onChangeFs);
   }, []);
 
+  // Fetch the photos either side so moving between them feels instant
+  useEffect(() => {
+    if (!open || count < 2) return;
+    [items[(index + 1) % count], items[(index - 1 + count) % count]].forEach((neighbour) => {
+      if (!isVideo(neighbour)) new Image().src = neighbour;
+    });
+  }, [open, index, items, count]);
+
   if (!open) return null;
 
   const src = items[index];

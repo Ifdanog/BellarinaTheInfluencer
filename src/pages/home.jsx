@@ -6,7 +6,7 @@ import Footer from '../components/footer';
 import GalleryItem from '../components/galleryItem';
 import VideoCard from '../components/videoCard';
 import Lightbox from '../components/lightbox';
-import { imageModules, videos } from '../media';
+import { imageModules, thumbFor, videos } from '../media';
 import statsImage from '../assets/images/Bella 5.jpg';
 import { EMAIL, PHONE_DISPLAY, WHATSAPP_URL } from '../components/social';
 // import { Instagram, Youtube, Twitter, TikTok, Mail, Phone } from 'lucide-react';
@@ -89,7 +89,9 @@ function Home() {
         >
           <div className="aspect-[4/5] bg-gradient-to-br from-brown to-black rounded-3xl overflow-hidden shadow-2xl">
             <img
-              src={statsImage}
+              src={thumbFor(statsImage)}
+              loading="lazy"
+              decoding="async"
               alt="Amaobi Isabella"
               className="w-full h-full object-cover transition-transform duration-700"
             />

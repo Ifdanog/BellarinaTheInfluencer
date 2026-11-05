@@ -1,3 +1,5 @@
+import { thumbFor } from "../media";
+
 export default function GalleryItemer({ src, index, onOpen }) {
   return (
     <button
@@ -7,9 +9,10 @@ export default function GalleryItemer({ src, index, onOpen }) {
       className="block w-full rounded-3xl overflow-hidden aspect-[4/5] bg-black cursor-zoom-in"
     >
       <img
-        src={src}
+        src={thumbFor(src)}
         alt={`Bellarina gallery photo ${index + 1}`}
         loading="lazy"
+        decoding="async"
         className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
       />
     </button>

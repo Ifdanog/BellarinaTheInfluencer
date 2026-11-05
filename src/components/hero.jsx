@@ -1,7 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import { SocialIconBtn, RevealBlock, SectionLabel } from "./UI";
 import { SOCIAL } from "./social";
-import aboutImage from "../assets/images/Bella (1).jpg";
+import aboutImage from "../assets/images/Bella (1).JPG";
+import { thumbFor } from "../media";
 
 /* ── Certificate accordion item ── */
 const CertCard = ({
@@ -199,9 +200,12 @@ const Hero = () => {
           <div className="relative mb-10 rounded-card-lg overflow-hidden border border-white/[0.06] shadow-card">
             <img
               src={aboutImage}
+              srcSet={`${thumbFor(aboutImage)} 857w, ${aboutImage} 1714w`}
+              sizes="(max-width: 896px) 100vw, 832px"
               alt="Bellarina TheInfluencer"
               className="w-full max-h-[500px] object-cover object-[0%_10%]"
-              loading="eager"
+              loading="lazy"
+              decoding="async"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-ink/50 via-transparent to-transparent" />
           </div>
